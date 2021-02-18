@@ -6,8 +6,8 @@ from msedge.selenium_tools import EdgeOptions
 
 
 URL= 'https://ucstudent.uc.pt/login'
-LOGIN_EMAIL= 'your email'
-LOGIN_PASSWORD= 'yourpassword'
+LOGIN_EMAIL= 'uc...@student.uc.pt'
+LOGIN_PASSWORD= 'your password'
 
 def main():
     edge_options = EdgeOptions()
