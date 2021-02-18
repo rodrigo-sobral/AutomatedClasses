@@ -6,10 +6,10 @@ from msedge.selenium_tools import EdgeOptions
 
 
 URL= 'https://ucstudent.uc.pt/login'
-LOGIN_EMAIL= 'uc2018298209@student.uc.pt'
-LOGIN_PASSWORD= 'coimbraEVER2000'
+LOGIN_EMAIL= 'your email'
+LOGIN_PASSWORD= 'yourpassword'
 
-def test_source():
+def main():
     edge_options = EdgeOptions()
     edge_options.use_chromium = True
     edge_options.add_argument('headless')
@@ -41,10 +41,10 @@ def test_source():
         presence_check= driver.find_element_by_xpath('/html/body/div[2]/div[2]/footer/button[2]')    
         presence_check.click()
         driver.quit()
-        return 'done bro, you checked your presence, you can go back to sleep now'
+        return '\ndone bro, you checked your presence, you can go back to sleep now'
     except: 
         driver.quit()
-        return 'doesn\'t exist a class running right now bro'
+        return '\ndoesn\'t exist a class running right now bro'
 
 if __name__=='__main__':
-    print(test_source())
+    print(main())
