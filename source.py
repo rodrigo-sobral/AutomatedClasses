@@ -7,7 +7,7 @@ from msedge.selenium_tools import EdgeOptions
 
 URL= 'https://ucstudent.uc.pt/login'
 LOGIN_EMAIL= 'uc...@student.uc.pt'
-LOGIN_PASSWORD= 'your password'
+LOGIN_PASSWORD= 'yourpassword'
 
 def main():
     edge_options = EdgeOptions()
@@ -27,19 +27,36 @@ def main():
     login_button= driver.find_element_by_xpath('//*[@id="app"]/div/div/div/div[2]/div/div/form/div[3]/button')    
     login_button.click()
 
-    wait.until(EC.presence_of_element_located((By.XPATH, '//*[@id="app"]/div/div[1]/div/div/div/div/div[1]/div/div[2]/p')))
+    try: wait.until(EC.presence_of_element_located((By.XPATH, '//*[@id="app"]/div/div[1]/div/div/div/div/div[7]/div')))
+    except:
+        driver.quit()
+        return '\nbro, you dont even are having a class, get a life nerd!'
     
     try:
         enter_class_button= driver.find_element_by_xpath('//*[@id="app"]/div/div[1]/div/div/div/div/div[7]/div/div[8]/button[1]')    
         enter_class_button.click()
     
-        wait.until(EC.presence_of_element_located((By.XPATH, '//*[@id="app"]/div/div[1]/div/div/div/div/div/div[4]/div/div[3]/div/button[2]')))
+        while True:
+            try: 
+                wait.until(EC.presence_of_element_located((By.XPATH, '//*[@id="app"]/div/div[1]/div/div/div/div/div/div[4]/div/div[3]/div/button[2]')))
+                break
+            except: continue
 
         online_presence= driver.find_element_by_xpath('//*[@id="app"]/div/div[1]/div/div/div/div/div/div[4]/div/div[3]/div/button[2]')    
         online_presence.click()
 
+        while True:
+            try:
+                wait.until(EC.presence_of_element_located((By.XPATH, '/html/body/div[2]/div[2]/footer/button[2]')))
+                break
+            except: continue
+
         presence_check= driver.find_element_by_xpath('/html/body/div[2]/div[2]/footer/button[2]')    
         presence_check.click()
+        
+        online_presence= driver.find_element_by_xpath('//*[@id="app"]/div/div[1]/div/div/div/div/div/div[4]/div/div[3]/div/button[2]')    
+        
+        while str(online_presence.value_of_css_property('background-color'))!='rgba(3, 164, 121, 1)': continue
         driver.quit()
         return '\ndone bro, you checked your presence, you can go back to sleep now'
     except: 
