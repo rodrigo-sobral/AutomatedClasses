@@ -1,0 +1,28 @@
+{
+    "BD": {
+        "T": "https://videoconf-colibri.zoom.us/j/88613781100?pwd=aFI1blpBTEpleHRtTDZ2WWhkeGdzZz09",
+        "TP": "https://videoconf-colibri.zoom.us/j/88613781100?pwd=aFI1blpBTEpleHRtTDZ2WWhkeGdzZz09",
+        "PL2": "https://videoconf-colibri.zoom.us/j/89935087541?pwd=NGN6aFVBTmErOUVvNGRDU05PWmFVQT09",
+        "Gravações": "https://educast.fccn.pt/vod/channels/208yums8av?locale=en"
+    },
+    "CT": {
+        "T": "https://videoconf-colibri.zoom.us/j/81488154152?pwd=SUJsU2ZWYmw0dW9TUFp1UkJneXlJZz09",
+        "PL3": "https://videoconf-colibri.zoom.us/j/81345261702?pwd=Z09nVEwrOEl4MVpZajk2aWNiY2J1QT09"
+    },
+    "EA": {
+        "T": "https://videoconf-colibri.zoom.us/j/88294239350?pwd=OERKQ2hKanhKc2UwcWRXb2lOZ2tZUT09",
+        "TP": "https://videoconf-colibri.zoom.us/j/88294239350?pwd=OERKQ2hKanhKc2UwcWRXb2lOZ2tZUT09",
+        "PL1": "https://videoconf-colibri.zoom.us/j/81122173734?pwd=bXZodjFxTU1hZXBRS3BvRkpPdklvZz09"
+    },
+    "FIA": {
+        "T": "https://videoconf-colibri.zoom.us/j/89442842337?pwd=ekdkOHh3SlRGdCtKbDFsM0ViZXAxUT09",
+        "TP": "https://videoconf-colibri.zoom.us/j/86262593367?pwd=NENxSEZpdmMzUlBZRG9EU0lsRkRJUT09",
+        "PL7": "https://videoconf-colibri.zoom.us/j/81619683777?pwd=SWIyaDJSZGxJTVExYWh0dkJ0dkFZQT09"
+    },
+    "SP": {
+        "T-TP": "https://videoconf-colibri.zoom.us/j/85901931120?pwd=UlgvV1BrbEhYaEUrR1BHQnA4b2kxUT09"
+    },
+    "SD": {
+        "T-TP": "https://videoconf-colibri.zoom.us/j/88448294151?pwd=OWJjT0czdHBpY3c4MWtCb0lUcTRhUT09"
+    }    
+}
