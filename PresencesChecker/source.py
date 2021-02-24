@@ -33,7 +33,8 @@ def main():
         return '\nbro, you dont even are having a class, get a life nerd!'
     
     try:
-        enter_class_button= driver.find_element_by_xpath('//*[@id="app"]/div/div[1]/div/div/div/div/div[7]/div/div[8]/button[1]')    
+        try: enter_class_button= driver.find_element_by_xpath('//*[@id="app"]/div/div[1]/div/div/div/div/div[6]/div/div[8]/button[1]')
+        except: enter_class_button= driver.find_element_by_xpath('//*[@id="app"]/div/div[1]/div/div/div/div/div[7]/div/div[8]/button[1]')
         enter_class_button.click()
     
         while True:
