@@ -17,12 +17,14 @@
     "FIA": {
         "T": "https://videoconf-colibri.zoom.us/j/89442842337?pwd=ekdkOHh3SlRGdCtKbDFsM0ViZXAxUT09",
         "TP": "https://videoconf-colibri.zoom.us/j/86262593367?pwd=NENxSEZpdmMzUlBZRG9EU0lsRkRJUT09",
-        "PL7": "https://videoconf-colibri.zoom.us/j/81619683777?pwd=SWIyaDJSZGxJTVExYWh0dkJ0dkFZQT09"
-    },
-    "SP": {
-        "T-TP": "https://videoconf-colibri.zoom.us/j/85901931120?pwd=UlgvV1BrbEhYaEUrR1BHQnA4b2kxUT09"
+        "PL7": "https://videoconf-colibri.zoom.us/j/87243123264?pwd=cXQ1RU5takpvaWRzVW1wTGVDMnVzUT09"
     },
     "SD": {
-        "T-TP": "https://videoconf-colibri.zoom.us/j/88448294151?pwd=OWJjT0czdHBpY3c4MWtCb0lUcTRhUT09"
-    }    
+        "T-TP": "https://videoconf-colibri.zoom.us/j/88448294151?pwd=OWJjT0czdHBpY3c4MWtCb0lUcTRhUT09",
+        "PL1": "https://videoconf-colibri.zoom.us/j/82170642903"
+    },  
+    "SP": {
+        "T-TP": "https://videoconf-colibri.zoom.us/j/85901931120?pwd=UlgvV1BrbEhYaEUrR1BHQnA4b2kxUT09",
+        "Gravações": "https://dropit.dei.uc.pt/index.php/s/ls7r412CxxHBWpg"
+    }
 }

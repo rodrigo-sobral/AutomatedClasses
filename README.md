@@ -44,7 +44,8 @@ This is a quite simple script to make what I am lazy to do. Check my presence du
 
 ### Configure and Run it
 To make it works you only need to:
-1) Open the [source code](PresencesChecker/source.py) and define your `email` and `password`
+1) Open the [JSON file](PresencesChecker/DataFile.json) and define your `email` and `password`
+![data structure](PresencesChecker/data_structure.png)
 2) Open this [executable](PresencesChecker/CheckPresence.bat) and change both directories (python compiler and script) to your own directories
 3) And voilá, you have your presence checked :smile:
 

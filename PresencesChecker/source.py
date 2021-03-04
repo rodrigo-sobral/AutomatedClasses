@@ -1,68 +1,63 @@
-from msedge.selenium_tools import Edge
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.by import By
-from msedge.selenium_tools import EdgeOptions
+from ElementAccesser import *
+from json import load
 
-
-URL= 'https://ucstudent.uc.pt/login'
-LOGIN_EMAIL= 'uc...@student.uc.pt'
-LOGIN_PASSWORD= 'yourpassword'
+def loadJSONData() -> dict:
+    with open('./DataFile.json', encoding='utf-8', mode='r') as json_reader: return load(json_reader)
 
 def main():
-    edge_options = EdgeOptions()
-    edge_options.use_chromium = True
-    edge_options.add_argument('headless')
-    edge_options.add_argument('disable-gpu')
-    driver = Edge(executable_path='msedgedriver.exe', options=edge_options)
-    driver.get(URL)
-    wait = WebDriverWait(driver,10)
-    wait.until(EC.presence_of_element_located((By.XPATH, '//*[@id="app"]/div/div/div/div[2]/div/div/form/div[1]/div/input')))
-
-    email_input= driver.find_element_by_xpath('//*[@id="app"]/div/div/div/div[2]/div/div/form/div[1]/div/input')    
-    pass_input= driver.find_element_by_xpath('//*[@id="app"]/div/div/div/div[2]/div/div/form/div[2]/div/input')    
-    email_input.send_keys(LOGIN_EMAIL)
-    pass_input.send_keys(LOGIN_PASSWORD)
+    data= loadJSONData()
+    #   Access Login Page
+    accesser= ElementAccesser(data['url'])
+    accesser.wait4Element('//*[@id="app"]/div/div/div/div[2]/div/div/form/div[1]/div/input')
     
-    login_button= driver.find_element_by_xpath('//*[@id="app"]/div/div/div/div[2]/div/div/form/div[3]/button')    
-    login_button.click()
-
-    try: wait.until(EC.presence_of_element_located((By.XPATH, '//*[@id="app"]/div/div[1]/div/div/div/div/div[7]/div')))
-    except:
-        driver.quit()
-        return '\nbro, you dont even are having a class, get a life nerd!'
+    email_input= accesser.findElement('//*[@id="app"]/div/div/div/div[2]/div/div/form/div[1]/div/input')
+    pass_input= accesser.findElement('//*[@id="app"]/div/div/div/div[2]/div/div/form/div[2]/div/input')
+    login_button= accesser.findElement('//*[@id="app"]/div/div/div/div[2]/div/div/form/div[3]/button')    
     
+    #   Input Login Data
+    accesser.inputInElement(email_input, data['email'])
+    accesser.inputInElement(pass_input, data['pass'])
+    accesser.clickInElement(login_button)
+
+    #   Failed Login
+    if accesser.findElement('//*[@id="app"]/div/div/div/div[2]/div/div/form/article/section/div/div/div/div[1]/p')!=False: return '\nyou have configured a wrong email or password'
+    #   Not Having Classes
+    if accesser.wait4Element('//*[@id="app"]/div/div[1]/div/div/div/div/div[7]/div')==False:  return accesser.quitBrowser('\nbro, you dont even are having a class, get a life nerd!')
+             
     try:
-        try: enter_class_button= driver.find_element_by_xpath('//*[@id="app"]/div/div[1]/div/div/div/div/div[6]/div/div[8]/button[1]')
-        except: enter_class_button= driver.find_element_by_xpath('//*[@id="app"]/div/div[1]/div/div/div/div/div[7]/div/div[8]/button[1]')
-        enter_class_button.click()
-    
+        #   Iterate All Classes of Today
+        class_id, presences_checked= 6, 0
         while True:
-            try: 
-                wait.until(EC.presence_of_element_located((By.XPATH, '//*[@id="app"]/div/div[1]/div/div/div/div/div/div[4]/div/div[3]/div/button[2]')))
-                break
-            except: continue
+            #   get the class div
+            class_div= accesser.findElement('//*[@id="app"]/div/div[1]/div/div/div/div/div[{}]/div'.format(class_id))
+            
+            #   when we iterated all the classes and the presences are checked
+            if not class_div: return '\ndone bro, you checked {} presences, you can go back to sleep now'.format(presences_checked)
+            
+            #   if the class div has green background means it is running
+            if accesser.checkBackgroundElement(class_div, 'rgba(3, 164, 121, 1)'): 
+                
+                #   get the button to enter in the class
+                enter_class_button= accesser.findElement('//*[@id="app"]/div/div[1]/div/div/div/div/div[{}]/div/div[8]/button[1]'.format(class_id))
+                accesser.clickInElement(enter_class_button)
+                
+                online_presence= accesser.findElement('//*[@id="app"]/div/div[1]/div/div/div/div/div/div[4]/div/div[3]/div/button[2]')
+                #   waits until the checking button appears, if doesn't, means that the class is closed and go to the main menu
+                if online_presence==False:
+                    accesser.clickInElement(accesser.findElement('//*[@id="app"]/div/div[1]/div/div/div/div/div/div[4]/button'))
+                    class_id+=1
+                    continue
 
-        online_presence= driver.find_element_by_xpath('//*[@id="app"]/div/div[1]/div/div/div/div/div/div[4]/div/div[3]/div/button[2]')    
-        online_presence.click()
+                #   otherwise, checks the presence
+                if not accesser.checkBackgroundElement(online_presence, 'rgba(3, 164, 121, 1)'):
+                    accesser.clickInElement(online_presence)
+                    accesser.wait4Element4Ever('/html/body/div[2]/div[2]/footer/button[2]')
+                    accesser.clickInElement(accesser.findElement('/html/body/div[2]/div[2]/footer/button[2]'))
+                    presences_checked+=1
 
-        while True:
-            try:
-                wait.until(EC.presence_of_element_located((By.XPATH, '/html/body/div[2]/div[2]/footer/button[2]')))
-                break
-            except: continue
+                #   and we go back to the main menu
+                accesser.clickInElement(accesser.findElement('//*[@id="app"]/div/div[1]/div/div/div/div/div/div[5]/button'))
+            class_id+=1
+    except: return accesser.quitBrowser('\ndoesn\'t exist a class running right now bro')
 
-        presence_check= driver.find_element_by_xpath('/html/body/div[2]/div[2]/footer/button[2]')    
-        presence_check.click()
-        
-        online_presence= driver.find_element_by_xpath('//*[@id="app"]/div/div[1]/div/div/div/div/div/div[4]/div/div[3]/div/button[2]')    
-        
-        while str(online_presence.value_of_css_property('background-color'))!='rgba(3, 164, 121, 1)': continue
-        driver.quit()
-        return '\ndone bro, you checked your presence, you can go back to sleep now'
-    except: 
-        driver.quit()
-        return '\ndoesn\'t exist a class running right now bro'
-
-if __name__=='__main__':
-    print(main())
+if __name__=='__main__': print(main())
