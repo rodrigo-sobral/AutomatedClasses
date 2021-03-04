@@ -41,8 +41,9 @@ def main():
                 enter_class_button= accesser.findElement('//*[@id="app"]/div/div[1]/div/div/div/div/div[{}]/div/div[8]/button[1]'.format(class_id))
                 accesser.clickInElement(enter_class_button)
                 
+                accesser.wait4Element('//*[@id="app"]/div/div[1]/div/div/div/div/div/div[5]/button')
                 online_presence= accesser.findElement('//*[@id="app"]/div/div[1]/div/div/div/div/div/div[4]/div/div[3]/div/button[2]')
-                #   waits until the checking button appears, if doesn't, means that the class is closed and go to the main menu
+                #   if online presence button doesn't exist, means that the class is closed and go to the main menu
                 if online_presence==False:
                     accesser.clickInElement(accesser.findElement('//*[@id="app"]/div/div[1]/div/div/div/div/div/div[4]/button'))
                     class_id+=1
