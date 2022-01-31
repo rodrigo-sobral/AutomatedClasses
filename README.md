@@ -3,16 +3,11 @@ ___
 ## Classes Accesser
 ### Technologies Used :computer:
 
-1) **Visual Studio Code**
+<img src="https://img.icons8.com/color/48/000000/python--v1.png"/> <img src="https://img.icons8.com/fluency/48/000000/visual-studio-code-2019.png"/>
 
-2) **Python**
-
-3) **JSON**
-
-3) **Python Libraries**
-
-    1) ***webbrowser***
-    2) ***tkinter***
+- **Python Libraries**
+    - ***webbrowser***
+    - ***tkinter***
 
 ### About
 This is also a quiet simple script to make once again what I am lazy to do. Search for my Zoom URL everytime I want to enter a meeting. So, let's make our life easier once again too.
